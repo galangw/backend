@@ -23,14 +23,18 @@ $router->get('/', function () use ($router) {
 
 
 $router->get('stories', 'StoryController@index');
+$router->get('/stories/create', 'StoryController@create');
 
 $router->get('/stories/{id}', 'StoryController@show');
+$router->get('/stories/{id}/edit', 'StoryController@edit');
 $router->post('/stories', 'StoryController@store');
-$router->put('/stories/{id}', 'StoryController@update');
+$router->put('/story/{id}', 'StoryController@update');
 $router->delete('/stories/{id}', 'StoryController@destroy');
+$router->get('/stories/{id}/chapters/create', 'ChapterController@create');
 
 $router->get('/stories/{storyId}/chapters', 'ChapterController@index');
 $router->get('/stories/{storyId}/chapters/{chapterId}', 'ChapterController@show');
+$router->get('/stories/{storyId}/chapters/{chapterId}/edit', 'ChapterController@edit');
 $router->post('/stories/{storyId}/chapters', 'ChapterController@store');
 $router->put('/stories/{storyId}/chapters/{chapterId}', 'ChapterController@update');
 $router->delete('/stories/{storyId}/chapters/{chapterId}', 'ChapterController@destroy');

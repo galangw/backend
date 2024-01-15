@@ -21,47 +21,62 @@ class StoryController extends Controller
         return view('stories.index', ['stories' => $stories]);
     }
 
-
+    public function create()
+    {
+        return view('stories.create');
+    }
 
     public function show($id)
     {
-        $story = Story::findOrFail($id);
+        $story = Story::with('chapters')->findOrFail($id);
 
-        return response()->json($story);
+        // return response()->json($story);
+        return view('stories.show', ['story' => $story]);
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'author' => 'required',
-            'synopsis' => 'required',
-            'category' => 'required',
-            'story_cover' => 'required|image', // Validasi bahwa file yang diunggah adalah gambar
-            'tags' => 'required',
-            'status' => 'required',
-        ]);
+        try {
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'author' => 'required',
+                'synopsis' => 'required',
+                'category' => 'required',
+                'story_cover' => 'required|image', // Validasi bahwa file yang diunggah adalah gambar
+                'tags' => 'required',
+                'status' => 'required',
+            ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+
+            // Mengunggah gambar ke direktori yang ditentukan
+            $path = $request->file('story_cover')->store();
+            // $url = Storage::url($path);
+            $story = Story::create([
+                'title' => $request->input('title'),
+                'author' => $request->input('author'),
+                'synopsis' => $request->input('synopsis'),
+                'category' => $request->input('category'),
+                'story_cover' => $path, // Menyimpan path gambar ke dalam database
+                'tags' => $request->input('tags'),
+                'status' => $request->input('status'),
+            ]);
+
+            return response()->json($story, 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to add story.'], 500);
         }
-
-        // Mengunggah gambar ke direktori yang ditentukan
-        $path = $request->file('story_cover')->store('story_covers');
-        $url = Storage::url($path);
-        $story = Story::create([
-            'title' => $request->input('title'),
-            'author' => $request->input('author'),
-            'synopsis' => $request->input('synopsis'),
-            'category' => $request->input('category'),
-            'story_cover' => $url, // Menyimpan path gambar ke dalam database
-            'tags' => $request->input('tags'),
-            'status' => $request->input('status'),
-        ]);
-
-        return response()->json($story, 201);
     }
 
+    public function edit($id)
+    {
+        $story = Story::with('chapters')->findOrFail($id);
+
+        // return response()->json($story);
+        return view('stories.edit', ['story' => $story]);
+    }
     public function update(Request $request, $id)
     {
         // return response()->json($request->all());
@@ -87,8 +102,7 @@ class StoryController extends Controller
             Storage::delete($story->story_cover);
 
             // Mengunggah gambar baru ke direktori yang ditentukan
-            $path = $request->file('story_cover')->store('story_covers');
-
+            $path = $request->file('story_cover')->store();
             $story->story_cover = $path;
         }
         // return response()->json($story->title);
@@ -107,8 +121,15 @@ class StoryController extends Controller
     public function destroy($id)
     {
         $story = Story::findOrFail($id);
+
+        // Hapus file gambar terkait dengan cerita
+        if ($story->story_cover) {
+            Storage::delete($story->story_cover);
+        }
+
+        // dd($story->story_cover);
         $story->delete();
 
-        return response()->json(null, 204);
+        return redirect('/stories');
     }
 }

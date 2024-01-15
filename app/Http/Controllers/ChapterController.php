@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Story;
+
 use App\Models\Chapter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ChapterController extends Controller
 {
+    public function create($id)
+    {
+        $story = Story::with('chapters')->findOrFail($id);
+        return view('chapters.create', ['story' => $story]);
+    }
     public function index($storyId)
     {
         $chapters = Chapter::where('story_id', $storyId)->get();
@@ -19,7 +26,13 @@ class ChapterController extends Controller
     {
         $chapter = Chapter::where('story_id', $storyId)->findOrFail($chapterId);
 
-        return response()->json($chapter);
+        return view('chapters.show', ['chapter' => $chapter]);
+    }
+    public function edit($storyId, $chapterId)
+    {
+        $chapter = Chapter::where('story_id', $storyId)->findOrFail($chapterId);
+
+        return view('chapters.edit', ['chapter' => $chapter]);
     }
 
     public function store(Request $request, $storyId)
