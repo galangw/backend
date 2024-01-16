@@ -14,7 +14,6 @@ class StoryController extends Controller
         try {
             $stories = Story::all();
         } catch (\Exception $e) {
-            // Handle the exception accordingly
             return view('error', ['message' => $e->getMessage()]);
         }
 
@@ -29,8 +28,6 @@ class StoryController extends Controller
     public function show($id)
     {
         $story = Story::with('chapters')->findOrFail($id);
-
-        // return response()->json($story);
         return view('stories.show', ['story' => $story]);
     }
 
@@ -42,7 +39,7 @@ class StoryController extends Controller
                 'author' => 'required',
                 'synopsis' => 'required',
                 'category' => 'required',
-                'story_cover' => 'required|image', // Validasi bahwa file yang diunggah adalah gambar
+                'story_cover' => 'required|image',
                 'tags' => 'required',
                 'status' => 'required',
             ]);
@@ -51,15 +48,13 @@ class StoryController extends Controller
                 return response()->json($validator->errors(), 400);
             }
 
-            // Mengunggah gambar ke direktori yang ditentukan
             $path = $request->file('story_cover')->store();
-            // $url = Storage::url($path);
             $story = Story::create([
                 'title' => $request->input('title'),
                 'author' => $request->input('author'),
                 'synopsis' => $request->input('synopsis'),
                 'category' => $request->input('category'),
-                'story_cover' => $path, // Menyimpan path gambar ke dalam database
+                'story_cover' => $path,
                 'tags' => $request->input('tags'),
                 'status' => $request->input('status'),
             ]);
@@ -73,19 +68,16 @@ class StoryController extends Controller
     public function edit($id)
     {
         $story = Story::with('chapters')->findOrFail($id);
-
-        // return response()->json($story);
         return view('stories.edit', ['story' => $story]);
     }
     public function update(Request $request, $id)
     {
-        // return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'author' => 'required',
             'synopsis' => 'required',
             'category' => 'required',
-            'story_cover' => 'image', // Validasi bahwa file yang diunggah adalah gambar
+            'story_cover' => 'image',
             'tags' => 'required',
             'status' => 'required',
         ]);
@@ -95,17 +87,12 @@ class StoryController extends Controller
         }
 
         $story = Story::findOrFail($id);
-
-        // Jika ada gambar yang diunggah, maka unggah dan perbarui path gambar di database
         if ($request->hasFile('story_cover')) {
-            // Menghapus gambar lama jika ada
             Storage::delete($story->story_cover);
 
-            // Mengunggah gambar baru ke direktori yang ditentukan
             $path = $request->file('story_cover')->store();
             $story->story_cover = $path;
         }
-        // return response()->json($story->title);
         $story->title = $request->input('title');
         $story->author = $request->input('author');
         $story->synopsis = $request->input('synopsis');
@@ -122,12 +109,10 @@ class StoryController extends Controller
     {
         $story = Story::findOrFail($id);
 
-        // Hapus file gambar terkait dengan cerita
         if ($story->story_cover) {
             Storage::delete($story->story_cover);
         }
 
-        // dd($story->story_cover);
         $story->delete();
 
         return redirect('/stories');

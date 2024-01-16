@@ -57,6 +57,8 @@
             </div>
 
             <button type="submit" class="btn btn-primary mt-2">Add Story</button>
+            <a href="/stories" class="btn btn-danger mt-2">Back</a>
+
         </form>
     </div>
 

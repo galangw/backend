@@ -35,20 +35,15 @@
 
             </div>
         </div>
-        <!-- Page content wrapper-->
         <div id="page-content-wrapper">
-            <!-- Top navigation-->
 
-            <!-- Page content-->
             <div class="container m-5">
                 @yield('content')
 
             </div>
         </div>
     </div>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js    "></script>
-    <!-- Core theme JS-->
+
 
 </body>
 

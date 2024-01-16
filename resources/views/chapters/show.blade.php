@@ -19,7 +19,6 @@
                 </textarea>
             </div>
 
-            {{-- <button type="submit" class="btn btn-primary mt-2">Add Story</button> --}}
             <a class="btn btn-danger mt-2" href="/stories/{{ $chapter->story_id }}/edit"> Back </a>
         </form>
     </div>
