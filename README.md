@@ -1,26 +1,72 @@
-# Lumen PHP Framework
+<a name="bigio-fullstack-dev-take-home-challenge"></a>
+# BIGIO Fullstack Dev - Take Home Challenge
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+<a name="introduction"></a>
+## Introduction
+Halo, nama saya Galang Wijaya
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Saya sangat berterima kasih telah diberikan kesempatan untuk berpartisipasi dalam proses seleksi sampai di tahap ini. Saya sangat menghargai kepercayaan yang telah diberikan kepada saya untuk menyelesaikan submission task yang telah ditugaskan.
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+Saya ingin menjelaskan bahwa hasil proyek yang saya kirimkan ini mungkin tidak sepenuhnya sesuai dengan instruksi yang diberikan, yang meminta penggunaan teknologi ReactJS dan Express. Sebaliknya, solusi yang saya tawarkan dibangun menggunakan Lumen dan jQuery. Meski demikian, saya telah berusaha keras untuk memastikan bahwa proyek ini masih memenuhi tujuan dan fungsi yang asli, dan saya percaya bahwa fungsionalitas dan kualitasnya tetap baik.
 
-## Official Documentation
+Keputusan ini bukanlah hasil dari kurangnya usaha atau keinginan untuk mematuhi instruksi, melainkan dari keterbatasan skill dan waktu yang saya miliki. 
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Namun, saya ingin menekankan bahwa ini bukan berarti saya tidak bersedia atau tidak mampu belajar dan beradaptasi dengan teknologi baru. Sebaliknya, saya sangat antusias untuk belajar dan mengembangkan skill saya, termasuk dalam ReactJS dan Express. Saya yakin bahwa dengan bimbingan dan kesempatan yang tepat, saya dapat mempelajari dan menguasai teknologi ini.
 
-## Contributing
+Meskipun proyek ini tidak sepenuhnya sesuai dengan instruksi, saya berharap bahwa Anda dapat melihat potensi dan dedikasi saya melalui fungsi dan kualitas submission test yang saya kerjakan. Saya berkomitmen untuk belajar dan berkembang, dan saya berharap dapat melakukan hal ini dalam lingkungan yang mendukung dan menantang seperti perusahaan dalam BIGIO.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Terima kasih telah mempertimbangkan aplikasi saya. Saya berharap dapat mendengar kabar baik dari Anda dan berkesempatan untuk membuktikan dedikasi dan komitmen saya dalam belajar dan berkembang.
 
-## Security Vulnerabilities
+## Table Of Contents
+   * [Introduction](#introduction)
+   * [Features](#features)
+   * [Tech Stack & Library](#tech-stack-library)
+   * [Project Structure](#project-structure)
+   * [Website URL](#website-url)
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
+<a name="features"></a>
+## Features
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Story List
+- Add Story
+- Show Story
+- Edit Story
+- Delete Story
+- Chapter List 
+- Add Chapter
+- Edit Chapter
+- Delete Chapter
+
+<a name="tech-stack-library"></a>
+## Tech Stack & Library
+
+- **PHP** (Lumen Laravel)
+
+- **Javascript** (Jquery)
+
+- **CKEditor**
+
+
+<a name="project-structure"></a>
+## Project Structure
+
+Berikut adalah struktur proyek aplikasi Lumen yang saya kembangkan:
+
+- `/app` 
+  - `/Http` 
+    - `/Controllers` - Semua controller aplikasi berada di sini.
+  - `/Models` - Berisi semua model Eloquent.
+- `/resources` 
+  - `/views` - Berisi semua file view blade.
+- `/routes` 
+  - `/web.php` - File ini berisi semua rute web aplikasi.
+- `.env` - File ini berisi setting environment variable.
+- `composer.json` - File ini berisi daftar semua dependensi PHP.
+
+
+<a name="website-url"></a>
+## Website URL
+[https://bigio.glng.my.id](https://bigio.glng.my.id)
+
+
